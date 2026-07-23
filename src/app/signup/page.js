@@ -1,3 +1,5 @@
-export default function Signup() {
-  return <strong>Signup</strong>
+import { Signup } from '@/components/Signup'
+
+export default function SignupPage() {
+  return <Signup />
 }
