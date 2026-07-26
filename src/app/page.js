@@ -1,13 +1,10 @@
 import { PostList } from '@/components/PostList'
+import { listAllPosts } from '@/data/posts'
+import { initDatabase } from '@/db/init'
 
-export default function HomePage() {
-  const posts = [
-    { _id: 123, title: 'hello next.js', author: { username: 'Daniel Bugl' } },
-    {
-      _id: 124,
-      title: 'hello next.js',
-      author: { username: 'Alejandro Armenta' },
-    },
-  ]
+export default async function HomePage() {
+  await initDatabase()
+  const posts = await listAllPosts()
+  console.log(posts)
   return <PostList posts={posts} />
 }

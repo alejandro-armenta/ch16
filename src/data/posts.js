@@ -4,7 +4,6 @@ import { Post } from '@/db/models'
 
 export async function createPost(userId, { title, contents }) {
   const post = new Post({ author: userId, title, contents })
-
   return await post.save()
 }
 

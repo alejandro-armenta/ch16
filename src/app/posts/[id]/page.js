@@ -1,13 +1,15 @@
 import { FullPost } from '@/components/FullPost'
+import { getPostById } from '@/data/posts'
+import { initDatabase } from '@/db/init'
+import { notFound } from 'next/navigation'
 
 export default async function ViewPostPage({ params }) {
-  const { id } = await params
+  await initDatabase()
 
-  const post = {
-    title: `Hello next js ${id}`,
-    contents: 'this will be fetched from the database later',
-    author: { username: 'Daniel Bugl' },
-  }
+  const { id } = await params
+  const post = await getPostById(id)
+
+  if (!post) notFound()
 
   return (
     <FullPost
